@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="editTextLTBFullName" type="id" />
+    <item name="editTextLTBPincode" type="id" />
+    <item name="editTextLTBAddress" type="id" />
+    <item name="editTextLTBContact" type="id" />
+    <item name="buttonLTBBookAppointment" type="id" />
+    <item name="textViewExistingUser" type="id" />
+    <item name="cardFindDoctor" type="id" />
+</resources>
