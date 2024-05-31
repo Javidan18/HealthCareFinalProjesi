@@ -45,7 +45,7 @@ public class Database extends SQLiteOpenHelper {
 
     }
     public int login(String username,String password){
-        int result=0;
+        int result=1;
         String str []  = new String[2];
         str[0]= username;
         str[1]= password;

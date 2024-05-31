@@ -14,11 +14,9 @@ import android.widget.Toast;
 
 public class LoginActivity extends AppCompatActivity {
 
-    EditText edUsername, edPassword;
-    Button btn;
-    TextView tv;
-
-
+    private EditText edUsername, edPassword;
+    private Button btn;
+    private TextView tv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,37 +33,30 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String username = edUsername.getText().toString();
                 String password = edPassword.getText().toString();
-               Database db =new Database(getApplicationContext(),"Healthcare",null,1);
-                startActivity(new Intent(LoginActivity.this,HomeActivity.class));
-                if (username.length() == 0 || password.length() == 0) {
-                    Toast.makeText(getApplicationContext(),"Please Fill all details",Toast.LENGTH_SHORT).show();
-                }
-                else {
-                    if(db.login(username,password)==1) {
-                        Toast.makeText(getApplicationContext(), "Login Success", Toast.LENGTH_SHORT).show();
+                Database db = new Database(getApplicationContext(), "Healthcare", null, 1);
+
+                if (username.isEmpty() || password.isEmpty()) {
+                    Toast.makeText(getApplicationContext(), "Please fill in all details", Toast.LENGTH_SHORT).show();
+                } else {
+                    if (db.login(username, password) == 1) {
+                        Toast.makeText(getApplicationContext(), "Login successful", Toast.LENGTH_SHORT).show();
                         SharedPreferences sharedpreferences = getSharedPreferences("shared_prefs", Context.MODE_PRIVATE);
                         SharedPreferences.Editor editor = sharedpreferences.edit();
                         editor.putString("username", username);
-                        //to save our data with key and value.
                         editor.apply();
-                        startActivity(new Intent(LoginActivity.this,HomeActivity.class));
+                        startActivity(new Intent(LoginActivity.this, HomeActivity.class));
+                    } else {
+                        Toast.makeText(getApplicationContext(), "Invalid login or password", Toast.LENGTH_SHORT).show();
                     }
-                   /* else{
-                        Toast.makeText(getApplicationContext(), "Invalid Login and Password",Toast.LENGTH_SHORT).show();
-                    }
-
-                    */
-
                 }
             }
         });
+
         tv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
-
             }
         });
-
     }
 }
